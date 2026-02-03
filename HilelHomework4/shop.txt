@@ -1,0 +1,12 @@
+[PRODUCTS]
+
+banan,fruit,10,50
+apple,fruit,20,10
+potato,vegetable,20,5
+
+[CUSTOMERS] 
+
+John,Lala@lasasa.com
+Bill,Clinton@gmail.com
+
+
