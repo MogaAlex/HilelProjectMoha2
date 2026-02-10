@@ -1,0 +1,23 @@
+body {
+    background-color: #F5DEB3;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+nav a {
+    margin-right: 10px;
+}
+
+table {
+    column-rule: 1px solid red;
+    border-style: solid;
+    border- collapse:
+    border-spacing: 15px;
+    line-height: 120%;
+
+}
+

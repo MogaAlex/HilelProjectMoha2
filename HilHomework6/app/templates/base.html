@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Мій Flask-сайт{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Moha Flask-проэкт</h1>
+        <nav>
+            <a href="{{ url_for('index') }}">Головна</a> |
+            <a href="{{ url_for('items') }}">Магазин</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; 2026 Мій сайт</p>
+    </footer>
+</body>
+</html>
