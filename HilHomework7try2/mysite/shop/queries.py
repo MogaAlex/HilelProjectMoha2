@@ -1,7 +1,5 @@
 from .models import Book, Category
 from django.db.models import Q, Count
-
-
 #Копировать - Вставить через manage.py shell
 #from shop.models import Book, Category
 
