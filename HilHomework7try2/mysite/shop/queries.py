@@ -3,9 +3,8 @@ from django.db.models import Q, Count
 #Копировать - Вставить через manage.py shell
 #from shop.models import Book, Category
 
-
-products = Book.objects.all()
-print(products)
+books = Book.objects.all()
+print(books)
 
 active_products = Book.objects.filter(stock__gt=0)
 print(active_products)
