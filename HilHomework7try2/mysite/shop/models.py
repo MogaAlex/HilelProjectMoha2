@@ -7,7 +7,7 @@ class Category(models.Model):
         return self.name
 
 class Book(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, verbose_name="Название")
     author = models.CharField(max_length=200)
     price = models.PositiveIntegerField()
     description = models.TextField()

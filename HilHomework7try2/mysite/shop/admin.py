@@ -7,7 +7,7 @@ from shop.models import Book, Category
 # Register your models here.
 class BookInline(admin.TabularInline):
     model = Book
-    extra = 0
+    extra = 1
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -18,8 +18,6 @@ class FindBook(admin.ModelAdmin):
     search_fields = ['title']
     list_display = ['title']
     list_filter = ['title', 'author', 'category']
-
-
 
 #admin.site.register(Book)
 #admin.site.register(Category)
