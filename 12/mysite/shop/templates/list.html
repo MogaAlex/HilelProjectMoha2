@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>
+    <p>
+    Книги
+    </p>
+</span>
+<form method="get">
+    <input type="text" name="title" placeholder="Поиск по названию" value="{{ request.GET.title }}">
+    <button type="submit">Поиск</button>
+</form>
+<p></p>
+<ur>
+    {% for book in products %}
+    <li>
+        <a href= "{% url 'shop:product_detail' pk=book.id %}"> {{book.title}} </a>
+        <div style="float:right">
+        <a href="{% url 'shop:edit_product' pk=book.id %}"  > редактировать </a>
+            |
+        <a href = "{% url 'shop:delete_product' pk=book.id  %}"> удалить</a>
+        </div>
+    </li>
+    {% endfor %}
+</ur>
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page=1{% if pn %}&name={{pn}}{% endif %}">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}{% if pn %}&name={{pn}}{% endif %}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}{% if pn %}&name={{pn}}{% endif %}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}{% if pn %}&name={{pn}}{% endif %}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>
+</body>
+</html>

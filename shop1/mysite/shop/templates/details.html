@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span>
+    <h2>{{ product.title }}</h2>
+
+
+
+    <p>  Название: {{ product.title }}</p>
+   <p> Автор: {{ product.author }}</p>
+   <p> Цена: {{ product.price }}</p>
+   <p> Описание: {{ product.description }}</p>
+   <p>Количество товара: {{ product.stock }}</p>
+    {% if product.category == Null %}
+    {% else %} <p> Жанр: {{ product.category }} </p>
+    {% endif %}
+
+<a href="{% url 'shop:edit_product' pk=product.id %}"  > редактировать </a>
+    |
+<a href = "{% url 'shop:delete_product' pk=product.id  %}"> удалить</a>
+</span>
+{% include 'includes/navbar.html' %}
+
+</body>
+</html>
