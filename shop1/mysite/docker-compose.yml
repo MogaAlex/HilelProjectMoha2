@@ -1,0 +1,50 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+#      - .:/app
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "8002:8000"
+    depends_on:
+      shop_db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    networks:
+      - hillel_net
+
+
+  shop_db:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=shop_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      - "5435:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d shop_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.redis
+    image: redis:7-alpine
+    container_name: shop_redis
+    networks:
+      - hillel_net
+
+volumes:
+  pg_data:
+
+networks:
+  hillel_net:
+    driver: bridge

@@ -1,0 +1,5 @@
+name: django-redis
+
+include:
+  - path:
+    - ./redis.yml

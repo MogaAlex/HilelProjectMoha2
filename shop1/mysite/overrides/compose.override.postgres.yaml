@@ -1,0 +1,41 @@
+services:
+  app:
+    container_name: django.shop_web_psql
+    entrypoint: ['./entrypoint.sh']
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DB_TYPE: postgres
+    env_file:
+      - ../env/.env.postgres
+    ports:
+      - "8001:8000"
+    depends_on:
+      shop_db:
+        condition: service_healthy
+    networks:
+      - hillel_net
+
+  shop_db:
+    image: postgres:16-alpine
+    container_name: django-postgres-shop_db-1
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+
+    ports:
+      - "5433:5432"
+    env_file:
+      - ../env/.env.postgres
+    networks:
+      - hillel_net
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d shop_db" ]
+      interval: 5s
+      timeout: 5s
+      retries: 2
+
+networks:
+  hillel_net:
+    driver: bridge

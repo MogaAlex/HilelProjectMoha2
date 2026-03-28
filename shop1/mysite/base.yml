@@ -1,0 +1,21 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_shop_web
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - env/.env
+    restart: unless-stopped
+    networks:
+      - hillel_net
+
+
+networks:
+  hillel_net:
+    driver: bridge
+    name: django_network

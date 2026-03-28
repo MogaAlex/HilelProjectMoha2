@@ -1,0 +1,5 @@
+name: django-postgres
+
+include:
+  - path:
+    - ./psql.yml

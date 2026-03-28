@@ -1,0 +1,5 @@
+name: django-sqlite
+
+include:
+  - path:
+    - ./sqlite.yml
