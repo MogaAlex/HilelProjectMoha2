@@ -1,0 +1,44 @@
+<div>
+    <h2> Ваш кошик </h2>
+    {% if not cart.cart %}
+    <div>Ваш кошик порожній </div>
+    {% else %}
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th> Товар </th>
+                <th> Ціна </th>
+                <th> Кількість </th>
+                <th> Сума </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in cart %}
+                <tr>
+                    <td>{{ item.product.name }}</td>
+                    <td>{{ item.product.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.total_price }}</td>
+                    <td>
+                        <a href = "{% url 'shopname:cart_remove' item.product.id %}"> Видалити </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3"><strong>Загальна сума: </strong></td>
+                    <td><strong>{{ total_price }}</strong></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+
+        </table>
+        <div>
+            <a href = "{% url 'shopname:cart_clear' %}">Очистити кошик</a>
+            <a href = "{% url 'shopname:order_create' %}">Оформити замовлення</a>
+        </div>
+    </div>
+    {% endif %}
+</div>
