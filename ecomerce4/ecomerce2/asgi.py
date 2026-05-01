@@ -10,7 +10,28 @@ https://docs.djangoproject.com/en/6.0/howto/deployment/asgi/
 import os
 
 from django.core.asgi import get_asgi_application
+from channels.routing import ProtocolTypeRouter, URLRouter
+from channels.auth import AuthMiddlewareStack
+from channels.security.websocket import AllowedHostsOriginValidator
+from asgi_cors import asgi_cors
+import shop_chat.routing
+#ws_routing_import
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ecomerce2.settings')
 
-application = get_asgi_application()
+#application = get_asgi_application()
+
+
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AllowedHostsOriginValidator(
+        AuthMiddlewareStack(
+            URLRouter(
+                shop_chat.routing.websocket_urlpatterns
+                #ws_routing_import
+            )
+        )
+    ),
+})
+
+application = asgi_cors(application, allow_all=True)

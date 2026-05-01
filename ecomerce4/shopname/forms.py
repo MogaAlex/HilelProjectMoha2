@@ -12,6 +12,6 @@ class OrderCreateForm(forms.ModelForm):
             'address',
 
         ]
-    widgets = {
-        'address': forms.TextInput(attrs={'rows':3}),
-    }
+        widgets = {
+            'address': forms.TextInput(attrs={'rows':3}),
+        }

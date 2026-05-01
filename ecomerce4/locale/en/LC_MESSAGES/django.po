@@ -1,0 +1,133 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-24 01:40+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\payments\models.py:18 .\shopname\orders\models.py:7
+msgid "Очікує"
+msgstr ""
+
+#: .\payments\models.py:19
+msgid "Оброблюється"
+msgstr ""
+
+#: .\payments\models.py:20
+msgid "Успішно"
+msgstr ""
+
+#: .\payments\models.py:21
+msgid "Невдало"
+msgstr ""
+
+#: .\payments\models.py:22 .\shopname\orders\models.py:11
+msgid "Скасовано"
+msgstr ""
+
+#: .\payments\models.py:23
+msgid "Повернуто"
+msgstr ""
+
+#: .\payments\models.py:24
+msgid "Частково повернуто"
+msgstr ""
+
+#: .\shopname\models.py:11 .\shopname\models.py:33
+msgid "name"
+msgstr ""
+
+#: .\shopname\models.py:12 .\shopname\models.py:34
+msgid "slug"
+msgstr ""
+
+#: .\shopname\models.py:18 .\shopname\models.py:39
+msgid "active"
+msgstr ""
+
+#: .\shopname\models.py:35
+msgid "description"
+msgstr ""
+
+#: .\shopname\models.py:36
+msgid "price"
+msgstr ""
+
+#: .\shopname\models.py:37
+msgid "discount price"
+msgstr ""
+
+#: .\shopname\models.py:38
+msgid "stock"
+msgstr ""
+
+#: .\shopname\models.py:40
+msgid "created at"
+msgstr ""
+
+#: .\shopname\models.py:41
+msgid "updated at"
+msgstr ""
+
+#: .\shopname\models.py:61
+msgid "phone number"
+msgstr ""
+
+#: .\shopname\orders\models.py:8
+msgid "Оплачено"
+msgstr ""
+
+#: .\shopname\orders\models.py:9
+msgid "Створено"
+msgstr ""
+
+#: .\shopname\orders\models.py:10
+msgid "Доставлено"
+msgstr ""
+
+#: .\shopname\templates\orders\create_order.html:4
+#, fuzzy
+#| msgid "Ваше замовлення"
+msgid "Оформлення замовлення"
+msgstr "Creation the order"
+
+#: .\shopname\templates\orders\success_order.html:4
+msgid "Ваше замовлення"
+msgstr "Your order"
+
+#: .\shopname\templates\orders\success_order.html:4
+msgid "успішно оформлене"
+msgstr "successfully completed"
+
+#: .\shopname\templates\products\list.html:8
+msgid "Назва"
+msgstr "Name"
+
+#: .\shopname\templates\products\list.html:9
+msgid "Ціна"
+msgstr "Price"
+
+#: .\shopname\templates\products\list.html:10
+msgid "Явність"
+msgstr ""
+
+#: .\shopname\views.py:139
+msgid "Карта порожна!"
+msgstr ""
+
+#: .\templates\base.html:22
+msgid "Змінити мову"
+msgstr "Change Language"

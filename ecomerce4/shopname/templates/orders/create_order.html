@@ -1,6 +1,9 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block 'content' %}
 <div>
     <div>
-        <h2>Оформлення замовлення </h2>
+        <h2>{% trans 'Оформлення замовлення' %} </h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
@@ -13,3 +16,5 @@
     </div>
 
 </div>
+
+{% endblock %}

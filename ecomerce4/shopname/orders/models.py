@@ -21,6 +21,7 @@ class Order(models.Model):
 
     status = models.CharField(max_length=10, choices=OrderStatus.choices, default=OrderStatus.CREATED)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    payment = models.OneToOneField('payments.Payment', on_delete=models.PROTECT, null=True, blank=True)
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')

@@ -1,9 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block 'content' %}
+
 <div>
     {% for product in products %}
         <div>
-            <p>Назва: {{ product.name  }}</p>
-            <p>Ціна: {{ product.current_price  }}</p>
-            <p>Явність: {{ product.stock  }}</p>
+            <div style="display: flex; gap: 10px;"><div>{% trans 'Назва' %} : </div> <div>{{ product.name  }}</div></div>
+            <p>{% trans 'Ціна' %}: {{ product.current_price  }}</p>
+            <p>{% trans 'Явність' %} : {{ product.stock  }}</p>
         </div>
         <div>
             <form action="{% url 'shopname:cart_add' product.id %}" method ="post">
@@ -14,3 +18,4 @@
         </div>
     {% endfor %}
 </div>
+{% endblock %}

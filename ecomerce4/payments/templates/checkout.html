@@ -41,6 +41,7 @@
     <script>
     const STRIPE_PUBLIC_KEY = '{{ stripe_public_key }}';
     const API_URL = '/payments';
+    const orderId = '{{ order.id }}'
 
     const stripe = Stripe(STRIPE_PUBLIC_KEY);
     let elements, paymentElement, clientSecret, paymentID;

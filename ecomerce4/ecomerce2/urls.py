@@ -16,12 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from payments.views import checkout_view
+from shop_chat.views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shopname.urls')),
     path('', include('payments.urls')),
+    path('chat/', include('shop_chat.urls')),
     path('checkout/', checkout_view, name='checkout'),
     path('checkout/<int:order_id>/', checkout_view, name='checkout_order'),
-]
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('register/', register, name='register'),
+    path('api/', include('shopname.api.urls', namespace='shopname_api')),
+    path('api-token-obtain/', obtain_auth_token, name='api_token_obtain'),
+    path('api-token/', TokenObtainPairView.as_view(), name='token_obtain'),
+    path('api-token-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

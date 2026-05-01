@@ -4,20 +4,115 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfe6d239-3451-4256-9368-d978c8b59759" name="Changes" comment="Forth commit">
-      <change afterPath="$PROJECT_DIR$/.idea/Hillel.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cfe6d239-3451-4256-9368-d978c8b59759" name="Changes" comment="Первый коммит">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Hildz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce2/ecomerce2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce2/ecomerce2/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/ecomerce2/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/ecomerce2/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/ecomerce2/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/ecomerce2/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/ecomerce2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/ecomerce2/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/ecomerce2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/ecomerce2/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/ecomerce2/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/ecomerce2/wsgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/migrations/0002_alter_payment_stripe_charge_id.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/migrations/0002_alter_payment_stripe_charge_id.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/stripe_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/stripe_service.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/payments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/payments/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/apps.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/cart/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/cart/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/cart/cart.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/cart/cart.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/migrations/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/orders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/orders/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/templates/cart/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/templates/cart/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/templates/orders/create_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/templates/orders/create_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/templates/orders/success_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/templates/orders/success_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/templates/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/templates/products/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/tests.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/tests.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/ecomerce2/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/ecomerce2/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/ecomerce2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/ecomerce2/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/ecomerce2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/ecomerce2/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/payments/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/payments/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/payments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/payments/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/orders/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/create_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/create_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/success_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/success_order.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/templates/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/templates/products/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Jupyter Notebook" />
+        <option value="HTTP Request" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform)); sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo, NoAppException&#10;for module in [&quot;main.py&quot;, &quot;wsgi.py&quot;, &quot;app.py&quot;]:&#10;    try: locals().update(ScriptInfo(app_import_path=module, create_app=None).load_app().make_shell_context()); print(&quot;\nFlask App: %s&quot; % app.import_name); break&#10;    except NoAppException: pass" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/HilelProjectMoha2" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;MogaAlex&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:MogaAlex/HilelProjectMoha2.git&quot;,
+    &quot;accountId&quot;: &quot;2373e655-efff-4079-a098-6d95506340f9&quot;
+  }
+}</component>
+  <component name="HttpClientOnboardingState">{
+  &quot;isOnboardingCommentShown&quot;: true
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -29,27 +124,43 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="Push.Settings">
+    <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\PyCharm\Hillel\ecomerce4\shopname\api" />
+      <recent name="E:\PyCharm\Hillel\HilelProjectMoha2\shop2\e_commerce\shop\cart" />
+      <recent name="E:\PyCharm\Hillel\HilelProjectMoha2\shop1\mysite\configs" />
+      <recent name="E:\PyCharm\Hillel\HilelProjectMoha2\shop1\mysite\composes" />
+      <recent name="E:\PyCharm\Hillel\HilelProjectMoha2\shop1\mysite\overrides" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.31033.139" />
         <option value="bundled-python-sdk-2653e85de345-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.31033.139" />
       </set>
     </attachedChunks>
+  </component>
+  <component name="StructureViewState">
+    <option name="selectedTab" value="Logical" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,7 +172,28 @@
       <workItem from="1772472460140" duration="4505000" />
       <workItem from="1772478389893" duration="853000" />
       <workItem from="1772479272698" duration="413000" />
-      <workItem from="1772480012792" duration="615000" />
+      <workItem from="1772480012792" duration="1792000" />
+      <workItem from="1773082046130" duration="19170000" />
+      <workItem from="1773147990157" duration="14459000" />
+      <workItem from="1773226078802" duration="4092000" />
+      <workItem from="1773234150395" duration="1523000" />
+      <workItem from="1773682440822" duration="13765000" />
+      <workItem from="1773769112215" duration="8078000" />
+      <workItem from="1773778306446" duration="10812000" />
+      <workItem from="1773804070458" duration="129000" />
+      <workItem from="1773832255338" duration="12025000" />
+      <workItem from="1773946547215" duration="1291000" />
+      <workItem from="1773967316191" duration="3056000" />
+      <workItem from="1774013502983" duration="2599000" />
+      <workItem from="1774118645058" duration="650000" />
+      <workItem from="1774321238868" duration="447000" />
+      <workItem from="1774370239239" duration="2963000" />
+      <workItem from="1774373760330" duration="5656000" />
+      <workItem from="1774573728048" duration="16672000" />
+      <workItem from="1774600594661" duration="15513000" />
+      <workItem from="1774658100705" duration="2223000" />
+      <workItem from="1774662099839" duration="126000" />
+      <workItem from="1775200983643" duration="74000" />
     </task>
     <task id="LOCAL-00001" summary="Forth commit">
       <option name="closed" value="true" />
@@ -71,22 +203,121 @@
       <option name="project" value="LOCAL" />
       <updated>1772480082351</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="five commit">
+      <option name="closed" value="true" />
+      <created>1772480766866</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1772480766866</updated>
+    </task>
+    <task id="LOCAL-00003" summary="five commit">
+      <option name="closed" value="true" />
+      <created>1772481641036</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1772481641036</updated>
+    </task>
+    <task id="LOCAL-00004" summary="five commit">
+      <option name="closed" value="true" />
+      <created>1772481685365</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1772481685365</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit number six">
+      <option name="closed" value="true" />
+      <created>1773229796894</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773229796894</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit one">
+      <option name="closed" value="true" />
+      <created>1774015706162</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1774015706162</updated>
+    </task>
+    <task id="LOCAL-00007" summary="seconds one">
+      <option name="closed" value="true" />
+      <created>1774660344158</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1774660344159</updated>
+    </task>
+    <task id="LOCAL-00008" summary="first commit">
+      <option name="closed" value="true" />
+      <created>1775854960845</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1775854960845</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit seven">
+      <option name="closed" value="true" />
+      <created>1775859775461</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775859775461</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit eight">
+      <option name="closed" value="true" />
+      <created>1775860595100</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1775860595100</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Первый коммит">
+      <option name="closed" value="true" />
+      <created>1775864517664</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1775864517664</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Forth commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Forth commit" />
+    <MESSAGE value="five commit" />
+    <MESSAGE value="commit number six" />
+    <MESSAGE value="commit one" />
+    <MESSAGE value="seconds one" />
+    <MESSAGE value="first commit" />
+    <MESSAGE value="commit seven" />
+    <MESSAGE value="commit eight" />
+    <MESSAGE value="Первый коммит" />
+    <option name="LAST_COMMIT_MESSAGE" value="Первый коммит" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/main.py</url>
-          <line>8</line>
+          <url>file://$PROJECT_DIR$/HilelProjectMoha2/shop1/mysite/shop/queries.py</url>
+          <line>16</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

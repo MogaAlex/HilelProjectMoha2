@@ -4,6 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey
 
 
+
 User = get_user_model()
 
 class Category(MPTTModel):
@@ -16,7 +17,7 @@ class Category(MPTTModel):
                             related_name='children')
     is_active = models.BooleanField(_('active'), default=True)
 
-    class MPPTMeta:
+    class MPTTMeta:
         order_inserting_by = ['name']
 
     def __str__(self):

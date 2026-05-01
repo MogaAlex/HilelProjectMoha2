@@ -15,6 +15,7 @@ from payments.models import Payment
 from payments.stripe_service import StripePaymentService
 from payments.serializers import PaymentSerializer, CreatePaymentSerializer
 from shopname.orders.models import Order
+from payments.utils import send_reciept
 
 
 logger = logging.getLogger(__name__)
@@ -75,6 +76,9 @@ class PaymentViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def confirm(self, request, pk=None):
         payment = self.get_object()
+        order = get_object_or_404(Order, id=10)
+        order.payment = payment
+        order.save()
 
         try:
             payment = StripePaymentService.confirm_payment(
@@ -82,6 +86,7 @@ class PaymentViewSet(viewsets.ModelViewSet):
                 stripe_payment_intent_id=payment.stripe_payment_intent_id,
             )
             serializer = self.get_serializer(payment)
+            send_reciept(payment.user.email)
             return Response(serializer.data)
         except Exception as e:
             logger.error(f'Error on payment intent confirmation: {str(e)}')
