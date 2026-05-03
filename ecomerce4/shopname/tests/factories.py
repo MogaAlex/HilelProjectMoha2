@@ -38,3 +38,10 @@ class OrderFactory(factory.django.DjangoModelFactory):
     address = factory.Faker('address')
     phone_number = factory.Faker('phone_number')
     total_price = 1000.00
+
+class CustomerFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Customer
+    user = factory.Faker('user')
+    phone_number = factory.Faker('phone_number')
+    address = factory.Faker('address')

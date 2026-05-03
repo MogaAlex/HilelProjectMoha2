@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfe6d239-3451-4256-9368-d978c8b59759" name="Changes" comment="Первый коммит">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Changes/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hildz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="cfe6d239-3451-4256-9368-d978c8b59759" name="Changes" comment="Второй коммит">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HilelProjectMoha2" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce2/ecomerce2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce2/ecomerce2/settings.py" afterDir="false" />
@@ -52,19 +48,10 @@
       <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce3/shopname/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/HilelProjectMoha2/ecomerce4/shopname/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecomerce4/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/ecomerce2/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/ecomerce2/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/ecomerce2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/ecomerce2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/ecomerce2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/ecomerce2/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/payments/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/payments/templates/checkout.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecomerce4/payments/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/payments/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/orders/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/orders/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/create_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/create_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/success_order.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/templates/orders/success_order.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/templates/products/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/templates/products/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shop_chat/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shop_chat/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/tests/factories.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/tests/factories.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/tests/tests_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/tests/tests_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecomerce4/shopname/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ecomerce4/shopname/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -283,7 +270,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775864517664</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Второй коммит">
+      <option name="closed" value="true" />
+      <created>1777630619263</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1777630619263</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +305,8 @@
     <MESSAGE value="commit seven" />
     <MESSAGE value="commit eight" />
     <MESSAGE value="Первый коммит" />
-    <option name="LAST_COMMIT_MESSAGE" value="Первый коммит" />
+    <MESSAGE value="Второй коммит" />
+    <option name="LAST_COMMIT_MESSAGE" value="Второй коммит" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,12 +1,7 @@
-import json
 import logging
-import stripe
 from decimal import Decimal
-
-#from allauth.socialaccount.providers import stripe
 from django.conf import settings
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, HttpResponse
 from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
@@ -17,35 +12,50 @@ from payments.serializers import PaymentSerializer, CreatePaymentSerializer
 from shopname.orders.models import Order
 from payments.utils import send_reciept
 
-
 logger = logging.getLogger(__name__)
 
 STRIPE_P_KEY = settings.STRIPE_PUBLIC_KEY
 
+
 def checkout_view(request, order_id):
+    """
+    Відображає сторінку оформлення платежу.
+    Передає публічний ключ Stripe та об'єкт замовлення в шаблон.
+    """
     order = None
     if order_id:
         order = get_object_or_404(Order, id=order_id)
-    return render(request, 'checkout.html',
-                  {'stripe_public_key': STRIPE_P_KEY,
-                   'order': order
-                   })
+    return render(request, 'checkout.html', {
+        'stripe_public_key': STRIPE_P_KEY,
+        'order': order
+    })
+
 
 class PaymentViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet для роботи з платежами Stripe.
+    Дозволяє створювати платіжні інтенти та підтверджувати оплату замовлень.
+    """
     serializer_class = PaymentSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        """Повертає платежі тільки поточного користувача."""
         return Payment.objects.filter(user=self.request.user).select_related('user')
 
     def get_serializer_class(self):
+        """Вибір серіалізатора залежно від дії."""
         if self.action == 'create_payment_intent':
             return CreatePaymentSerializer
         return PaymentSerializer
 
     @action(detail=False, methods=['post'])
     def create_payment_intent(self, request):
-        serializer = self.get_serializer_class()(data=request.data)
+        """
+        Створює інтент оплати в Stripe.
+        Валідує суму та валюту через CreatePaymentSerializer.
+        """
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         try:
@@ -55,7 +65,6 @@ class PaymentViewSet(viewsets.ModelViewSet):
                 currency=serializer.validated_data['currency'],
                 description=serializer.validated_data['description'],
                 metadata=serializer.validated_data.get('metadata', {}),
-
             )
 
             return Response({
@@ -68,15 +77,21 @@ class PaymentViewSet(viewsets.ModelViewSet):
         except ValueError as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         except Exception as e:
-            logger.error(f'Error on payment intent creation: {str(e)}')
-            #return Response({'error': 'Failed to create payment intent'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+            logger.error(f'Payment intent creation error: {str(e)}', exc_info=True)
+            return Response({'error': 'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     @action(detail=True, methods=['post'])
     def confirm(self, request, pk=None):
+        """
+        Підтверджує платіж та прив'язує його до замовлення.
+        Використовує замовлення за замовчуванням (ID 10) або передане в запиті.
+        """
         payment = self.get_object()
-        order = get_object_or_404(Order, id=10)
+
+        # Пытаемся взять order_id из запроса, если нет — используем твой дефолтный 10
+        order_id = request.data.get('order_id', 10)
+        order = get_object_or_404(Order, id=order_id)
+
         order.payment = payment
         order.save()
 
@@ -89,6 +104,5 @@ class PaymentViewSet(viewsets.ModelViewSet):
             send_reciept(payment.user.email)
             return Response(serializer.data)
         except Exception as e:
-            logger.error(f'Error on payment intent confirmation: {str(e)}')
-            #return Response({'error': 'Failed to create payment intent'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            #return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            logger.error(f'Payment confirmation error: {str(e)}', exc_info=True)
+            return Response({'error': 'Confirmation failed'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
