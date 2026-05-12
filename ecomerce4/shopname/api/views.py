@@ -6,9 +6,15 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth import authenticate
+from django_filters.rest_framework import DjangoFilterBackend
 from shopname.models import Product, Category
 from shopname.api.serializers import CategorySerializer, ProductSerializer, ProductDetailSerializer
 from shopname.api.utils import create_access_token, create_refresh_token
+from shopname.orders.models import Order
+from shopname.cart.models import Cart
+from shopname.api.serializers import OrderSerializer, CartSerializer
+from .permissions import IsOwnerOrReadOnly
+
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -60,3 +66,19 @@ class RefreshTokenView(APIView):
 
     def post(self, request):
         pass
+
+class OrderViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly]
+    serializer_class = OrderSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['status']
+
+    def get_queryset(self):
+        return Order.objects.filter(customer__user=self.request.user)
+
+class CartViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    serializer_class = CartSerializer
+
+    def get_queryset(self):
+        return Cart.objects.filter(user=self.request.user)

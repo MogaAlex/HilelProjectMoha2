@@ -15,6 +15,7 @@ from datetime import timedelta
 import certifi
 from pathlib import Path
 from dotenv import load_dotenv
+from celery.schedules import crontab
 
 load_dotenv()
 os.environ['SSL_CERT_FILE'] = certifi.where()
@@ -48,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'corsheaders',
+    'storages',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -55,6 +58,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'drf_spectacular',
     'mptt',
     'shopname.apps.ShopnameConfig',
     'payments.apps.PaymentsConfig',
@@ -62,6 +66,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -200,6 +205,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+####################
+
+
 
 #######################
 
@@ -211,6 +219,9 @@ CHANNELS_LAYERS = {
         }
     }
 }
+
+CELERY_RESULTS_BACKEND = os.getenv('CELERY_RESULTS_BACKEND')
+CELERY_BROCKER_URL = os.getenv('CELERY_BROCKER_URL')
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -228,8 +239,11 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
     ],
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 3,
+    'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
@@ -239,3 +253,54 @@ SIMPLE_JWT = {
     # 'USER_ID_FIELD': 'id',
     # 'USER_ID_CLAIM': 'user_id',
 }
+
+LOW_STOCK_THRESHOLD = 5
+
+#SSL
+
+CSRF_COOKIE_SECURE = False # Не забудь выставить тру
+CSRF_TRUSTED_ORIGINS = [
+    'https://localhost',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
+CSRF_COOKIE_SAMESITE = None
+SESSION_COOKIE_SECURE = False # Не забудь выставить тру
+SESSION_COOKIE_SAMESITE = None
+SECURE_SSL_REDIRECT = False # Не забудь выставить тру
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_BROWSER_XSS_FILTER = False # Не забудь выставить тру
+X_FRAME_OPTIONS = 'DENY'
+
+
+#################################################
+# AWS S3                                        #
+#################################################
+
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+#AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
+AWS_S3_ENDPOINT_URL = '' # Введи айпи из докера
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_FILE_OVERWRITE = False
+
+#################################################
+# STORAGE CONF                                  #
+#################################################
+
+STORAGES = {
+    'default': {
+        'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+        'OPTIONS': {
+            'access_key': AWS_ACCESS_KEY_ID,
+            'secret_key': AWS_SECRET_KEY,
+            'endpoint_url': AWS_S3_ENDPOINT_URL,
+            'bucket_name': AWS_STORAGE_BUCKET_NAME,
+        },
+    },
+    'staticfiles': {
+        'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+    },
+}
+

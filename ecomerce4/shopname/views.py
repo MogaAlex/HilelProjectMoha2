@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, aget_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.core.files.base import ContentFile
+from django.core.files.storage import default_storage
+from botocore.exceptions import ClientError
+#from quorum.error import errors_json
 from shopname.models import Product, Customer
 from shopname.orders.models import Order, OrderItem
 from shopname.cart.cart import Cart
@@ -9,6 +13,12 @@ from django.core.mail import send_mail
 import asyncio
 from asgiref.sync import sync_to_async, async_to_sync
 from django.utils.translation import gettext as _
+import logging
+from shopname.tasks import test_task, send_confirmation_order_email
+from shopname.boto_client import get_s3_client, FILE_BUCKET_NAME
+
+logger = logging.getLogger(__name__)
+
 
 
 # def product_list(request):
@@ -23,8 +33,12 @@ async def product_list(request):
     Використовує асинхронний ітератор для отримання продуктів з бази даних.
     """
     products = []
+    user_id = None
     async for product in Product.objects.all():
         products.append(product)
+    if request.user.is_authenticated:
+        user_id = request.user.id
+    test_task.delay()
     return render(request, 'products/list.html', {'products': products})
 
 def cart_detail(request):
@@ -103,6 +117,7 @@ def order_create(request):
             cart.clear()
 
             messages.success(request, _(f'Замовлення №{order.id} успішно створено!'))
+            send_confirmation_order_email.delay(order.id)
             return render(request, 'orders/success_order.html', {'order': order})
 
 
@@ -145,3 +160,57 @@ def send_order_email(order):
     recipient_list = [order.email]
 
     return send_mail(subject, message, 'admin@shop.com', recipient_list)
+
+def upload_s3_files(request):
+    if request.method == 'POST' and request.FILES['file']:
+        file = request.FILES['file']
+        logger.info(f'File: {file.name}')
+        try:
+            default_storage.save(file.name, ContentFile(file.read()))
+        except Exception as e:
+            logger.error(str(e))
+    return redirect('s3_files_list')
+
+def s3_files_list(request):
+    s3_client = get_s3_client()
+    files = []
+    errors = []
+    continuation_token = None
+
+    try:
+        while True:
+            params = {'Bucket': FILE_BUCKET_NAME}
+            if continuation_token:
+                params['ContinuationToken'] = continuation_token
+            response = s3_client.list_objects_v2(**params)
+            for file in response.get('Contents', []):
+                file_name = file['Key']
+                try:
+                    file_params = params.copy()
+                    file_params['Key'] = file_name
+                    presign_file_url = s3_client.generate_presigned_url(
+                        'get_object',
+                        Params=file_params,
+                        ExpiresIn=30,
+
+                    )
+                    files.append({
+                        'file_name': file_name,
+                        'file_url': presign_file_url,
+                        'size': file['Size'],
+                        'last_modified': file['LastModified'],
+                    })
+
+                except ClientError as err:
+                    errors.append(err)
+                    logger.error(f'Client error: {err}')
+            if response.get('isTruncated'):
+                continuation_token = response.get('NextContinuationToken')
+            else:
+                break
+
+    except ClientError as err:
+            errors.append(err)
+            logger.error(f'Client error: {err}')
+
+    return render(request, 's3_bucket/s3_files_list.html', {'files': files, 'errors': errors})
