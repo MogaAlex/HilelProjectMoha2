@@ -25,13 +25,6 @@ logger = logging.getLogger(__name__)
 default_cache = caches['default']
 
 
-# def product_list(request):
-#     products = Product.active.all()
-#     #products = Product.objects.all()
-#     #return render(request, 'shopname/product_list.html', {'products': products})
-#     return render(request, 'products/list.html', {'products': products})
-
-
 @cache_page(60 * 15, cache="page_cache", key_prefix="product_list")
 def product_list(request):
     """
