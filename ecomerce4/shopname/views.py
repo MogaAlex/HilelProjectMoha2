@@ -27,10 +27,7 @@ default_cache = caches['default']
 
 @cache_page(60 * 15, cache="page_cache", key_prefix="product_list")
 def product_list(request):
-    """
-    Отображает список всех активных товаров магазина.
-    Синхронный контекст гарантирует стабильную работу шаблонов и менеджеров.
-    """
+
     products = Product.active.all()
     if request.user.is_authenticated:
         user_id = request.user.id
