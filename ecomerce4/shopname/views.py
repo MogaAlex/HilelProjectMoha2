@@ -33,7 +33,7 @@ default_cache = caches['default']
 
 
 @cache_page(60 * 15, cache="page_cache", key_prefix="product_list")
-def product_list(request):  # Обычная, стабильная синхронная функция
+def product_list(request):
     """
     Отображает список всех активных товаров магазина.
     Синхронный контекст гарантирует стабильную работу шаблонов и менеджеров.
