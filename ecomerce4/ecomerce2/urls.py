@@ -23,6 +23,11 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from payments.views import checkout_view
 from shop_chat.views import register
 
+from django.urls import path
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shopname.urls')),
@@ -36,5 +41,6 @@ urlpatterns = [
     path('api-token-obtain/', obtain_auth_token, name='api_token_obtain'),
     path('api-token/', TokenObtainPairView.as_view(), name='token_obtain'),
     path('api-token-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('sentry-debug/', trigger_error),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

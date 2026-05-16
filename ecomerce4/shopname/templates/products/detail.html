@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block 'content' %}
+<div style="margin: 20px 0;">
+    <a href="{% url 'shopname:product_list' %}">&larr; {% trans 'Назад до списку товарів' %}</a>
+</div>
+
+<div class="product-detail-card" style="border: 1px solid #ccc; padding: 20px; border-radius: 5px; max-width: 500px;">
+    <h2>{{ product.name }}</h2>
+    
+    <div style="margin: 15px 0;">
+        <p><strong>{% trans 'Ціна' %}:</strong> {{ product.current_price }}</p>
+        <p><strong>{% trans 'Наявність на складі' %}:</strong> {{ product.stock }} шт.</p>
+    </div>
+
+    {% if product.description %}
+        <div style="margin: 15px 0;">
+            <h4>{% trans 'Опис товару' %}:</h4>
+            <p>{{ product.description }}</p>
+        </div>
+    {% endif %}
+
+    <div style="margin-top: 20px;">
+        <form action="{% url 'shopname:cart_add' product.id %}" method="post">
+            {% csrf_token %}
+            <label for="quantity">{% trans 'Кількість' %}:</label>
+            <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 50px;">
+            <button type="submit" style="background-color: #28a745; color: white; border: none; padding: 10px 15px; cursor: pointer;">
+                {% trans 'Додати в кошик' %}
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

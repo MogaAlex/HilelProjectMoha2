@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404, aget_object_or
 from django.contrib.auth.decorators import login_required
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
+from django.views.decorators.cache import cache_page
+from django.core.cache import caches
 from botocore.exceptions import ClientError
 #from quorum.error import errors_json
 from shopname.models import Product, Customer
@@ -17,8 +19,10 @@ import logging
 from shopname.tasks import test_task, send_confirmation_order_email
 from shopname.boto_client import get_s3_client, FILE_BUCKET_NAME
 
+
 logger = logging.getLogger(__name__)
 
+default_cache = caches['default']
 
 
 # def product_list(request):
@@ -27,24 +31,42 @@ logger = logging.getLogger(__name__)
 #     #return render(request, 'shopname/product_list.html', {'products': products})
 #     return render(request, 'products/list.html', {'products': products})
 
-async def product_list(request):
+
+@cache_page(60 * 15, cache="page_cache", key_prefix="product_list")
+def product_list(request):  # Обычная, стабильная синхронная функция
     """
-    Асинхронно відображає список усіх товарів магазину.
-    Використовує асинхронний ітератор для отримання продуктів з бази даних.
+    Отображает список всех активных товаров магазина.
+    Синхронный контекст гарантирует стабильную работу шаблонов и менеджеров.
     """
-    products = []
-    user_id = None
-    async for product in Product.objects.all():
-        products.append(product)
+    products = Product.active.all()
     if request.user.is_authenticated:
         user_id = request.user.id
-    test_task.delay()
+        test_task.delay(user_id)
     return render(request, 'products/list.html', {'products': products})
+
+# async def product_list(request):
+#     """
+#     Асинхронно відображає список усіх товарів магазину.
+#     Використовує асинхронний ітератор для отримання продуктів з бази даних.
+#     """
+#     products = []
+#     async for product in Product.objects.all():
+#         products.append(product)
+#
+#     if request.user.is_authenticated:
+#         user_id = request.user.id
+#         test_task.delay(user_id)
+#     else:
+#         pass
+#
+#     return render(request, 'products/list.html', {'products': products})
+
 
 def cart_detail(request):
     """
     Відображає вміст кошика та загальну вартість товарів.
     """
+
     cart = Cart(request)
 
     context = {
@@ -214,3 +236,22 @@ def s3_files_list(request):
             logger.error(f'Client error: {err}')
 
     return render(request, 's3_bucket/s3_files_list.html', {'files': files, 'errors': errors})
+
+
+def product_detail(request, pk):
+    """
+    2 LEVEL CACHE: Low-Level Cache (Низкоуровневый кэш данных)
+    Загружает объект конкретного товара из Redis, минуя Postgres при повторных запросах.
+    """
+    cache_key = f"product_detail_{pk}"
+
+    product = default_cache.get(cache_key)
+
+    if not product:
+        product = get_object_or_404(Product.active, pk=pk)
+        default_cache.set(cache_key, product)
+        logger.info(f"--- [БАЗА ДАННЫХ] Товар {pk} взят из Postgres и сохранен в Redis ---")
+    else:
+        logger.info(f"--- [REDIS] Товар {pk} успешно получен напрямую из низкоуровневого кэша ---")
+
+    return render(request, 'products/detail.html', {'product': product})

@@ -17,6 +17,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from celery.schedules import crontab
 
+
 load_dotenv()
 os.environ['SSL_CERT_FILE'] = certifi.where()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -102,29 +103,31 @@ ASGI_APPLICATION = 'ecomerce2.asgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
-#     'default':{
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': os.getenv('PG_NAME'),
-#         'USER': os.getenv('PG_USER'),
-#         'PASSWORD': os.getenv('PG_PASSWORD'),
-#         'HOST': os.getenv('PG_HOST'),
-#         'PORT': os.getenv('PG_PORT'),
-#         'OPTIONS': {
-#             'options': '-c timezone=UTC'
-#         }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
 
+DATABASES = {
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('PG_NAME'),
+        'USER': os.getenv('PG_USER'),
+        'PASSWORD': os.getenv('PG_PASSWORD'),
+        'HOST': os.getenv('PG_HOST'),
+        'PORT': os.getenv('PG_PORT'),
+        'OPTIONS': {
+            'options': '-c timezone=UTC'
+        }
+    }
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
+
+SITE_ID = 1
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -220,8 +223,30 @@ CHANNELS_LAYERS = {
     }
 }
 
-CELERY_RESULTS_BACKEND = os.getenv('CELERY_RESULTS_BACKEND')
-CELERY_BROCKER_URL = os.getenv('CELERY_BROCKER_URL')
+#########################################
+# CELERY SETTINGS                       #
+#########################################
+
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
+
+CELERY_BEAT_SCHEDULE = {
+    'check-low-stock-every-minute': {
+        'task': 'shopname.tasks.notify_low_stock_products',
+        'schedule': crontab(),
+    },
+
+    'clear-expired-sessions-daily': {
+        'task': 'shopname.tasks.clear_django_sessions_task',
+        'schedule': crontab(hour=0, minute=0),
+    },
+}
+
+CELERY_TIMEZONE = "Europe/Kyiv"
+
+#########################################
+# REST FRAMEWORK                        #
+#########################################
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -258,19 +283,19 @@ LOW_STOCK_THRESHOLD = 5
 
 #SSL
 
-CSRF_COOKIE_SECURE = False # Не забудь выставить тру
+CSRF_COOKIE_SECURE = True # Не забудь выставить тру
 CSRF_TRUSTED_ORIGINS = [
     'https://localhost',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
 ]
 CSRF_COOKIE_SAMESITE = None
-SESSION_COOKIE_SECURE = False # Не забудь выставить тру
+SESSION_COOKIE_SECURE = True # Не забудь выставить тру
 SESSION_COOKIE_SAMESITE = None
-SECURE_SSL_REDIRECT = False # Не забудь выставить тру
+SECURE_SSL_REDIRECT = True # Не забудь выставить тру
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-SECURE_BROWSER_XSS_FILTER = False # Не забудь выставить тру
+SECURE_BROWSER_XSS_FILTER = True # Не забудь выставить тру
 X_FRAME_OPTIONS = 'DENY'
 
 
@@ -279,9 +304,10 @@ X_FRAME_OPTIONS = 'DENY'
 #################################################
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+#AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_SECRET_KEY = os.getenv('AWS_SECRET_KEY')
 #AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
-AWS_S3_ENDPOINT_URL = '' # Введи айпи из докера
+AWS_S3_ENDPOINT_URL = 'http://e_commerce_minio:9000' # Введи айпи из докера
 AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = False
 
@@ -304,3 +330,164 @@ STORAGES = {
     },
 }
 
+#############################################################
+# LOGGING                                                   #
+#############################################################
+
+LOG_DIR = BASE_DIR / 'logs'
+LOG_DIR.mkdir(exist_ok=True)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'verbose': {
+            'format': '[{levelname}] {asctime} {name} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+            # 'style': '%', <== for older versions
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+        'simple': {
+            'format': '[{levelname}] {asctime} {message}',
+            'style': '{',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+
+        'json': {
+            '()': 'pythonjsonlogger.jsonlogger.JsonFormatter',
+            'format': '%(asctime)s, %(name)s %(levelname)s %(module)s %(message)s',
+        },
+    },
+
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+        'file_error': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'error.log',
+            'maxBytes': 1024*1024*10,
+            'backupCount': 10,
+            'formatter': 'verbose',
+        },
+
+        'file_django': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'django.log',
+            'maxBytes': 1024 * 1024 * 10,
+            'backupCount': 10,
+            'formatter': 'verbose',
+        },
+
+        'file_db': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'database.log',
+            'maxBytes': 1024 * 1024 * 10,
+            'backupCount': 10,
+            'formatter': 'verbose',
+            'filters': ['require_debug_true'],
+        },
+
+        'file_all': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': LOG_DIR / 'all.log',
+            'maxBytes': 1024 * 1024 * 10,
+            'backupCount': 10,
+            'formatter': 'verbose',
+        }
+
+    },
+
+    'loggers': {
+        '': {
+            'handlers': ['console', 'file_error', 'file_all'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django': {
+            'handlers': ['console', 'file_django', 'file_error'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['file_error'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+        'django.db.backends': {
+            'handlers': ['file_db'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'shopname': {
+            'handlers': ['console', 'file_all', 'file_error'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+
+    }
+
+}
+
+#############################################################
+# SENTRY CONF                                               #
+#############################################################
+
+import sentry_sdk
+import logging
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+from sentry_sdk.integrations.redis import RedisIntegration
+
+sentry_sdk.init(
+    dsn="https://1f143d5547dcbec67e60a67e0a59413d@o4511390442127360.ingest.de.sentry.io/4511390482497616",
+    # Add data like request headers and IP for users,
+    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
+    integrations=[
+        DjangoIntegration(),
+        LoggingIntegration(
+            event_level=logging.ERROR,
+        ),
+        CeleryIntegration(),
+        RedisIntegration()
+    ],
+    attach_stacktrace=True,
+    environment='development' if DEBUG else 'production-hillel',
+    send_default_pii=True,
+)
+
+#############################################################
+# CACHE CONF                                                #
+#############################################################
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis:6379/1',
+        'TIMEOUT': 5*60,
+        'KEY_PREFIX': 'ecom',
+    },
+    'page_cache': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis:6379/2',
+        'TIMEOUT': 15*60,
+        'KEY_PREFIX': 'ecom_page',
+    }
+}

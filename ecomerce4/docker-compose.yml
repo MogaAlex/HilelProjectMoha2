@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-        sh -c "uvicorn e_commerce2.asgi:application --reload --host 0.0.0.0 --port 8000"
+        sh -c "uvicorn ecomerce2.asgi:application --reload --host 0.0.0.0 --port 8000"
 #    volumes:
 #      - .:/app
     expose:
@@ -23,7 +23,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-      sh -c "uvicorn e_commerce2.asgi:application --reload --host 0.0.0.0 --port 8001"
+      sh -c "uvicorn ecomerce2.asgi:application --reload --host 0.0.0.0 --port 8001"
     volumes:
       - .:/app
     expose:
@@ -53,13 +53,31 @@ services:
     image: redis:7-alpine
     expose:
       - "6379"
+    networks:
+      - e_commerce-ntwrk
+
+  celery_worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      celery -A ecomerce2 worker --loglevel=info
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - db
+    networks:
+      - e_commerce-ntwrk
 
   celery_beat:
       build:
         context: .
         dockerfile: Dockerfile
       command: >
-        celery -A ecommerce2 worker --loglevel=info
+        celery -A ecomerce2 beat --loglevel=info
       volumes:
         - .:/app
       env_file:
@@ -74,7 +92,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-      celery -A ecommerce2 flower --port=5555
+      celery -A ecomerce2 flower --port=5555
     volumes:
       - .:/app
     env_file:
@@ -95,7 +113,7 @@ services:
       - "3000:3000"
       - "8765:8765"
     environment:
-      CELERY_BROCKER_URL: ${CELERY_BROCKER_URL}
+      CELERY_BROCKER_URL: ${CELERY_BROKER_URL}
       CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND}
       DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@${PG_HOST}:${PG_PORT}/${PG_NAME}
     volumes:

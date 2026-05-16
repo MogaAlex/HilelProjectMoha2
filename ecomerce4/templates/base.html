@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load cache %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 
@@ -26,5 +27,20 @@
                 {% block 'content' %} {% endblock %}
             </div>
         </header>
+    {% cache 300 static_footer LANGUAGE_CODE %}
+        <footer style="margin-top: 50px; padding: 20px; background-color: #f8f9fa; border-top: 1px solid #e9ecef;">
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <h3>{% trans "Про наш магазин" %}</h3>
+                    <p>{% trans "Найкращі книги та товари з доставкою по всій країні." %}</p>
+                </div>
+                <div>
+                    <h3>{% trans "Контакти" %}</h3>
+                    <p>Email: </p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">&copy; 2026 Shopname</p>
+        </footer>
+        {% endcache %}
     </body>
 </html>

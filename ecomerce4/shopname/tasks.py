@@ -2,6 +2,7 @@ from celery import shared_task
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
+from django.core.management import call_command
 from shopname.orders.models import Order
 from shopname.models import Product
 
@@ -63,7 +64,7 @@ def notify_low_stock_products():
     #     User.objects.filter(is_staff=True,
     #                         is_active=True).values_list('email', flat=True)
     # )
-    if lock_stock:
+    if low_stock:
         return {'notified': 0, 'products': []}
 
     staff_emails = list(
@@ -89,3 +90,9 @@ def notify_low_stock_products():
     )
 
     return {'notified': len(staff_emails), 'products': low_stock}
+
+@shared_task
+def clear_django_sessions_task():
+    """Периодическая задача: очистка просроченных сессий из базы данных"""
+    call_command('clearsessions')
+    return "Expired sessions cleared successfully"

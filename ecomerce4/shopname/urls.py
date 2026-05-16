@@ -7,7 +7,8 @@ from shopname.views import (
     order_create,
     cart_clear,
     upload_s3_files,
-    s3_files_list
+    s3_files_list,
+    product_detail
 )
 
 app_name = 'shopname'
@@ -21,5 +22,5 @@ urlpatterns = [
     path('order/', order_create, name='order_create'),
     path('upload_s3_files/', upload_s3_files, name='upload_s3_files'),
     path('s3_files_list/', s3_files_list, name='s3_files_list'),
-
+    path('product/<int:pk>/', product_detail, name='product_detail'),
 ]
