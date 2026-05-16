@@ -232,10 +232,6 @@ def s3_files_list(request):
 
 
 def product_detail(request, pk):
-    """
-    2 LEVEL CACHE: Low-Level Cache (Низкоуровневый кэш данных)
-    Загружает объект конкретного товара из Redis, минуя Postgres при повторных запросах.
-    """
     cache_key = f"product_detail_{pk}"
 
     product = default_cache.get(cache_key)
