@@ -239,8 +239,8 @@ def product_detail(request, pk):
     if not product:
         product = get_object_or_404(Product.active, pk=pk)
         default_cache.set(cache_key, product)
-        logger.info(f"--- [БАЗА ДАННЫХ] Товар {pk} взят из Postgres и сохранен в Redis ---")
+        logger.info(f" Товар {pk} взят из Postgres и сохранен в Redis")
     else:
-        logger.info(f"--- [REDIS] Товар {pk} успешно получен напрямую из низкоуровневого кэша ---")
+        logger.info(f" Товар {pk} успешно получен напрямую из низкоуровневого кэша")
 
     return render(request, 'products/detail.html', {'product': product})
