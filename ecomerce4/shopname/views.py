@@ -18,21 +18,37 @@ from django.utils.translation import gettext as _
 import logging
 from shopname.tasks import test_task, send_confirmation_order_email
 from shopname.boto_client import get_s3_client, FILE_BUCKET_NAME
+from shopname.cache. import get_cached_api_response, set_cached_api_response
 
 
 logger = logging.getLogger(__name__)
 
 default_cache = caches['default']
 
-
-@cache_page(60 * 15, cache="page_cache", key_prefix="product_list")
 def product_list(request):
-
-    products = Product.active.all()
+    request_id = getattr(request,'request_id','-')
+    CACHE_PATH = '/products/'
+    cached = get_cached_api_response(CACHE_PATH)
+    if cached is not None:
+        logger.debug('product list: L3 cache HIT', extra={'request_id': request_id})
+        return render(request, 'products/list.html', {'products': cached})
+    products = list(Product.active.all())
+    set_cached_api_response(CACHE_PATH, products)
+    user_id = None
     if request.user.is_authenticated:
         user_id = request.user.id
         test_task.delay(user_id)
     return render(request, 'products/list.html', {'products': products})
+
+
+# @cache_page(60 * 15, cache="page_cache", key_prefix="product_list")
+# def product_list(request):
+#
+#     products = Product.active.all()
+#     if request.user.is_authenticated:
+#         user_id = request.user.id
+#         test_task.delay(user_id)
+#     return render(request, 'products/list.html', {'products': products})
 
 # async def product_list(request):
 #     """

@@ -5,4 +5,4 @@ from payments.models import Payment
 
 @receiver(post_save, sender=Payment)
 def change_stock_on_order(sender, instance, created, **kwargs):
-
+    pass
