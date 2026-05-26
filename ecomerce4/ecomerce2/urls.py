@@ -18,12 +18,51 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
+from django.db import connections
+from django.db.utils import OperationalError
+from django.core.cache import cache
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from payments.views import checkout_view
 from shop_chat.views import register
 
 from django.urls import path
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
+
+
+def health_check(request):
+    status_data = {
+        "status": "healthy",
+        "services": {
+            "database": "up",
+            "redis_cache": "up"
+        }
+    }
+    has_errors = False
+
+    try:
+        connections['default'].cursor()
+    except OperationalError:
+        status_data["services"]["database"] = "down"
+        has_errors = True
+
+    try:
+        cache.set("__health_check__", 1, timeout=5)
+        if not cache.get("__health_check__"):
+            raise Exception("Redis unreachable")
+    except Exception:
+        status_data["services"]["redis_cache"] = "down"
+        has_errors = True
+
+    if has_errors:
+        status_data["status"] = "unhealthy"
+        return JsonResponse(status_data, status=500)
+
+    return JsonResponse(status_data, status=200)
+
 
 def trigger_error(request):
     division_by_zero = 1 / 0

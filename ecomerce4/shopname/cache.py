@@ -36,7 +36,7 @@ def _api_response_key(path: str, query: str = ''):
 
 @functools.lru_cache(maxsize=256)
 def get_active_category_ids():
-    from shopname.models. import Category
+    from shopname.models import Category
     ids = frozenset(
         Category.objects.filter(is_active=True).values_list('id', flat=True)
     )

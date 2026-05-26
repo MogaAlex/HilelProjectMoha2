@@ -1,0 +1,462 @@
+[ERROR] 2026-05-26 22:03:37 django.request log 14840 11324 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 1003, in connect_check_health
+    sock = self._connect()
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 1479, in _connect
+    for res in socket.getaddrinfo(
+               ~~~~~~~~~~~~~~~~~~^
+        self.host, self.port, self.socket_type, socket.SOCK_STREAM
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 87, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "E:\PyCharm\Hillel\ecomerce4\shopname\views.py", line 31, in product_list
+    cached = get_cached_api_response(CACHE_PATH)
+  File "E:\PyCharm\Hillel\ecomerce4\shopname\cache.py", line 90, in get_cached_api_response
+    data = L3.get(key)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\cache\backends\redis.py", line 188, in get
+    return self._cache.get(key, default)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\cache\backends\redis.py", line 100, in get
+    value = client.get(key)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\commands\core.py", line 2073, in get
+    return self.execute_command("GET", name, keys=[name])
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\redis\_sync_common.py", line 150, in sentry_patched_execute_command
+    value = old_execute_command(self, name, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\client.py", line 716, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\client.py", line 722, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\utils.py", line 236, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 3041, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 976, in connect
+    self.retry.call_with_retry(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.connect_check_health(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        lambda error: self.disconnect(error),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\retry.py", line 132, in call_with_retry
+    raise error
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\retry.py", line 120, in call_with_retry
+    return do()
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 977, in <lambda>
+    lambda: self.connect_check_health(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        check_health=True, retry_socket_connect=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 1025, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+[ERROR] 2026-05-26 22:03:37 django.server log 14840 11324 "GET / HTTP/1.1" 500 156580
+[ERROR] 2026-05-26 22:03:48 django.request log 14840 11324 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_site
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 87, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\admin\sites.py", line 450, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\edit.py", line 142, in get
+    return self.render_to_response(self.get_context_data())
+                                   ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\auth\views.py", line 113, in get_context_data
+    current_site = get_current_site(self.request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\shortcuts.py", line 16, in get_current_site
+    return Site.objects.get_current(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\models.py", line 59, in get_current
+    return self._get_site_by_id(site_id)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\models.py", line 30, in _get_site_by_id
+    site = self.get(pk=site_id)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\utils.py", line 1894, in runner
+    return sentry_patched_function(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 645, in execute
+    result = real_execute(self, sql, params)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_site
+[ERROR] 2026-05-26 22:03:48 django.server log 14840 11324 "GET /admin/login/?next=/admin/ HTTP/1.1" 500 229764
+[ERROR] 2026-05-26 22:04:24 django.request log 14948 1764 Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 1003, in connect_check_health
+    sock = self._connect()
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 1479, in _connect
+    for res in socket.getaddrinfo(
+               ~~~~~~~~~~~~~~~~~~^
+        self.host, self.port, self.socket_type, socket.SOCK_STREAM
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ):
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\socket.py", line 983, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 11001] getaddrinfo failed
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 87, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "E:\PyCharm\Hillel\ecomerce4\shopname\views.py", line 31, in product_list
+    cached = get_cached_api_response(CACHE_PATH)
+  File "E:\PyCharm\Hillel\ecomerce4\shopname\cache.py", line 90, in get_cached_api_response
+    data = L3.get(key)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\cache\backends\redis.py", line 188, in get
+    return self._cache.get(key, default)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\cache\backends\redis.py", line 100, in get
+    value = client.get(key)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\commands\core.py", line 2073, in get
+    return self.execute_command("GET", name, keys=[name])
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\redis\_sync_common.py", line 150, in sentry_patched_execute_command
+    value = old_execute_command(self, name, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\client.py", line 716, in execute_command
+    return self._execute_command(*args, **options)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\client.py", line 722, in _execute_command
+    conn = self.connection or pool.get_connection()
+                              ~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\utils.py", line 236, in wrapper
+    return func(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 3041, in get_connection
+    connection.connect()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 976, in connect
+    self.retry.call_with_retry(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        lambda: self.connect_check_health(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        lambda error: self.disconnect(error),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\retry.py", line 132, in call_with_retry
+    raise error
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\retry.py", line 120, in call_with_retry
+    return do()
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 977, in <lambda>
+    lambda: self.connect_check_health(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        check_health=True, retry_socket_connect=False
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\redis\connection.py", line 1025, in connect_check_health
+    raise e
+redis.exceptions.ConnectionError: Error 11001 connecting to redis:6379. getaddrinfo failed.
+[ERROR] 2026-05-26 22:04:24 django.server log 14948 1764 "GET / HTTP/1.1" 500 156580
+[ERROR] 2026-05-26 22:04:30 django.request log 14948 1764 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_site
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 87, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\admin\sites.py", line 450, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\edit.py", line 142, in get
+    return self.render_to_response(self.get_context_data())
+                                   ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\auth\views.py", line 113, in get_context_data
+    current_site = get_current_site(self.request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\shortcuts.py", line 16, in get_current_site
+    return Site.objects.get_current(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\models.py", line 59, in get_current
+    return self._get_site_by_id(site_id)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\models.py", line 30, in _get_site_by_id
+    site = self.get(pk=site_id)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\utils.py", line 1894, in runner
+    return sentry_patched_function(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 645, in execute
+    result = real_execute(self, sql, params)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_site
+[ERROR] 2026-05-26 22:04:30 django.server log 14948 1764 "GET /admin/login/?next=/admin/ HTTP/1.1" 500 229908
+[ERROR] 2026-05-26 22:04:32 django.request log 14948 1764 Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_site
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 87, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\admin\sites.py", line 450, in login
+    return LoginView.as_view(**defaults)(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\base.py", line 106, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\utils\decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\auth\views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\base.py", line 145, in dispatch
+    return handler(request, *args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\views\generic\edit.py", line 142, in get
+    return self.render_to_response(self.get_context_data())
+                                   ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\auth\views.py", line 113, in get_context_data
+    current_site = get_current_site(self.request)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\shortcuts.py", line 16, in get_current_site
+    return Site.objects.get_current(request)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\models.py", line 59, in get_current
+    return self._get_site_by_id(site_id)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\contrib\sites\models.py", line 30, in _get_site_by_id
+    site = self.get(pk=site_id)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 635, in get
+    num = len(clone)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 372, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 2000, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\query.py", line 95, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\models\sql\compiler.py", line 1624, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\utils.py", line 1894, in runner
+    return sentry_patched_function(*args, **kwargs)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 645, in execute
+    result = real_execute(self, sql, params)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\utils.py", line 94, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Саша\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\django\db\backends\sqlite3\base.py", line 359, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_site
+[ERROR] 2026-05-26 22:04:32 django.server log 14948 1764 "GET /admin/login/?next=/admin/ HTTP/1.1" 500 229764

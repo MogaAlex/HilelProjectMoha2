@@ -18,7 +18,7 @@ from django.utils.translation import gettext as _
 import logging
 from shopname.tasks import test_task, send_confirmation_order_email
 from shopname.boto_client import get_s3_client, FILE_BUCKET_NAME
-from shopname.cache. import get_cached_api_response, set_cached_api_response
+from shopname.cache import get_cached_api_response, set_cached_api_response
 
 
 logger = logging.getLogger(__name__)
