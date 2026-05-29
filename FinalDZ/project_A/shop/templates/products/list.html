@@ -1,0 +1,18 @@
+<div>
+    {% for product in products %}
+        <div>
+            <div style="display: flex; gap: 10px;"><div> Назва : </div> <div>{{ product.name  }}</div></div>
+            <p>Ціна: {{ product.current_price  }}</p>
+            <p>Явність : {{ product.stock  }}</p>
+        </div>
+    {% comment %}
+        <div>
+            <form action="{% url 'shopname:cart_add' product.id %}" method ="post">
+                  {% csrf_token %}
+                <input type="number" name="quantity" value="1" min="1">
+                <button type="submit"> Додати в кошик </button>
+            </form>
+        </div>
+    {% endcomment %}
+    {% endfor %}
+</div>
